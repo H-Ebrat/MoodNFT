@@ -1,0 +1,59 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cat body (slightly slumped) -->
+  <ellipse cx="100" cy="135" rx="45" ry="35" fill="#ff8c42"/>
+  
+  <!-- Cat head (tilted slightly down) -->
+  <circle cx="100" cy="85" r="35" fill="#ff8c42"/>
+  
+  <!-- Cat ears (droopy) -->
+  <polygon points="75,65 85,40 95,65" fill="#ff8c42" transform="rotate(-10 85 52)"/>
+  <polygon points="105,65 115,40 125,65" fill="#ff8c42" transform="rotate(10 115 52)"/>
+  
+  <!-- Inner ears -->
+  <polygon points="78,60 85,50 92,60" fill="#ffb380" transform="rotate(-10 85 55)"/>
+  <polygon points="108,60 115,50 122,60" fill="#ffb380" transform="rotate(10 115 55)"/>
+  
+  <!-- Sad droopy eyes -->
+  <ellipse cx="90" cy="78" rx="8" ry="6" fill="#2d5016" transform="rotate(-15 90 78)"/>
+  <ellipse cx="110" cy="78" rx="8" ry="6" fill="#2d5016" transform="rotate(15 110 78)"/>
+  
+  <!-- Half-closed eyelids -->
+  <ellipse cx="90" cy="75" rx="8" ry="3" fill="#ff8c42" transform="rotate(-15 90 75)"/>
+  <ellipse cx="110" cy="75" rx="8" ry="3" fill="#ff8c42" transform="rotate(15 110 75)"/>
+  
+  <!-- Small eye shine (less bright) -->
+  <circle cx="92" cy="77" r="1.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="108" cy="77" r="1.5" fill="#ffffff" opacity="0.6"/>
+  
+  <!-- Tear drops -->
+  <ellipse cx="85" cy="82" rx="2" ry="4" fill="#87ceeb"/>
+  <ellipse cx="115" cy="82" rx="2" ry="4" fill="#87ceeb"/>
+  
+  <!-- Cat nose (smaller, less prominent) -->
+  <polygon points="100,88 96,92 104,92" fill="#d63384" opacity="0.8"/>
+  
+  <!-- Sad downturned mouth -->
+  <path d="M 100 95 Q 95 92 90 94" stroke="#2d5016" stroke-width="2" fill="none"/>
+  <path d="M 100 95 Q 105 92 110 94" stroke="#2d5016" stroke-width="2" fill="none"/>
+  
+  <!-- Droopy whiskers -->
+  <line x1="70" y1="88" x2="50" y2="90" stroke="#2d5016" stroke-width="1.5"/>
+  <line x1="70" y1="95" x2="50" y2="98" stroke="#2d5016" stroke-width="1.5"/>
+  <line x1="130" y1="88" x2="150" y2="90" stroke="#2d5016" stroke-width="1.5"/>
+  <line x1="130" y1="95" x2="150" y2="98" stroke="#2d5016" stroke-width="1.5"/>
+  
+  <!-- Cat tail (drooping down) -->
+  <ellipse cx="135" cy="150" rx="8" ry="25" fill="#ff8c42" transform="rotate(60 135 150)"/>
+  
+  <!-- Cat paws (closer together, dejected posture) -->
+  <ellipse cx="85" cy="165" rx="8" ry="12" fill="#ff8c42"/>
+  <ellipse cx="115" cy="165" rx="8" ry="12" fill="#ff8c42"/>
+  
+  <!-- Paw pads -->
+  <ellipse cx="85" cy="170" rx="4" ry="6" fill="#d63384"/>
+  <ellipse cx="115" cy="170" rx="4" ry="6" fill="#d63384"/>
+  
+  <!-- Small sad eyebrows -->
+  <line x1="85" y1="68" x2="95" y2="70" stroke="#2d5016" stroke-width="2"/>
+  <line x1="105" y1="70" x2="115" y2="68" stroke="#2d5016" stroke-width="2"/>
+</svg>

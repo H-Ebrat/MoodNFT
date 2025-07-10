@@ -1,0 +1,103 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+env:
+  FOUNDRY_PROFILE: ci
+
+jobs:
+  check:
+    strategy:
+      fail-fast: true
+
+    name: Foundry project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Show Forge version
+        run: |
+          forge --version
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.foundry/cache
+            lib/
+          key: ${{ runner.os }}-foundry-${{ hashFiles('**/foundry.toml') }}
+
+      - name: Install dependencies
+        run: forge install
+
+      - name: Run Forge fmt
+        run: |
+          forge fmt --check
+        id: fmt
+
+      - name: Run Forge build
+        run: |
+          forge build --sizes
+        id: build
+
+      - name: Run Forge tests
+        run: |
+          forge test -vvv
+        id: test
+
+      - name: Run Forge coverage
+        run: |
+          forge coverage --report lcov
+        id: coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./lcov.info
+          flags: smart-contracts
+          name: foundry-coverage
+          fail_ci_if_error: false
+
+      - name: Run gas report
+        run: |
+          forge test --gas-report
+        id: gas-report
+
+      - name: Run slither static analysis
+        uses: crytic/slither-action@v0.3.0
+        continue-on-error: true
+        id: slither
+        with:
+          target: 'src/'
+          slither-args: '--filter-paths "lib/" --exclude-dependencies'
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Install dependencies
+        run: forge install
+
+      - name: Run mythril security analysis
+        continue-on-error: true
+        run: |
+          pip install mythril
+          myth analyze src/MoodNft.sol --solc-json mythril.json || true
