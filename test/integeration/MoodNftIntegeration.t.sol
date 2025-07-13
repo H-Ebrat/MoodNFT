@@ -239,4 +239,9 @@ contract MoodNftIntegerationTest is Test {
         
         assertTrue(moodNft.isApprovedForAll(user, user2));
     }
+
+    // Test initial state - no tokens exist
+    function test_InitialStateNoTokens() public {
+        assertEq(moodNft.balanceOf(user), 0);
+    }
 } 
