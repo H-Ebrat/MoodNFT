@@ -244,4 +244,15 @@ contract MoodNftIntegerationTest is Test {
     function test_InitialStateNoTokens() public {
         assertEq(moodNft.balanceOf(user), 0);
     }
+
+    // Test that first minted NFT gets token ID 0
+    function test_FirstMintedNftHasTokenIdZero() public {
+        vm.startPrank(user);
+        moodNft.mintNft();
+        
+        // Verify the first minted NFT has token ID 0
+        assertEq(moodNft.ownerOf(0), user);
+        
+        vm.stopPrank();
+    }
 } 
